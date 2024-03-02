@@ -1,4 +1,4 @@
 class EventUser < ApplicationRecord
-  belongs_to :user, foreign_key: 'attendee_id'
+  belongs_to :user
   belongs_to :event
 end

@@ -2,3 +2,7 @@
 
 <p>Created By: <%= @event.creator %></p>
 <p>Date: <%= @event.date %></p>
+<p>Attendees:</p>
+<% @event.attendees.each do |attendee| %>
+  <p><%= attendee.name %></p>
+<% end %>
