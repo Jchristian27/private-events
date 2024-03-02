@@ -1,3 +1,9 @@
 <h1>All Events</h1>
 
-<p>All events will eventually be listed here.</p>
+<% @events.each do |event|%>
+  <div class="event_card">
+    <p> Event Name: <%= event.event_name %></p>
+    <p> Event Date: <%= event.date %></p>
+    <p> Created By: <%= event.creator.name%></p><br>
+  </div>
+<% end %>

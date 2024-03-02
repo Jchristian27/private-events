@@ -1,0 +1,10 @@
+<h1>Welcome, <%= @user.name.split.first%></h1>
+
+<h2>Events You've Created</h2>
+
+<% @user.created_events.each do |event| %>
+  <div class="event_card">
+    <%= event.event_name %><br><br>
+    <%= event.date%>
+  </div>
+<% end %>
