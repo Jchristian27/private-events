@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <%= link_to "Home", root_path %>
+      </ul>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
