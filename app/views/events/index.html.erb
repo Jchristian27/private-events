@@ -5,5 +5,6 @@
     <p> Event Name: <%= event.title %></p>
     <p> Event Date: <%= event.date %></p>
     <p> Created By: <%= event.creator.name%></p><br>
+    <%= button_to "Details", "/events/#{event.id}", method: :get %>
   </div>
 <% end %>

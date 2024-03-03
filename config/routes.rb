@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
   root "events#index"
+  devise_for :users
   get '/users/:id', to: 'users#show'
+  get 'attendances/create'
   resources :events
   
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
