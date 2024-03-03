@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_02_231413) do
-  create_table "event_users", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_03_03_000359) do
+  create_table "attendances", force: :cascade do |t|
     t.integer "attendee_id"
     t.integer "event_id"
     t.datetime "created_at", null: false
