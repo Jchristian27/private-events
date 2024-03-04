@@ -4,7 +4,11 @@
   <div class="event_card">
     <p> Event Name: <%= event.title %></p>
     <p> Event Date: <%= event.date %></p>
-    <p> Created By: <%= event.creator.name%></p><br>
+    <p> Created By: <%= event.creator.name%></p>
     <%= button_to "Details", "/events/#{event.id}", method: :get %>
   </div>
+
+  <br>
+  <hr style="border: none; height: 1px; background-color: #000;">
+  <br>
 <% end %>
