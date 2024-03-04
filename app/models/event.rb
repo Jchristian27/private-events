@@ -4,6 +4,6 @@ class Event < ApplicationRecord
   has_many :attendees, through: :attendances, source: :user
 
   def attendee_ids
-    self.attendees.map { |attendee| attendee[:id] }
+    attendees.map(&:id)
   end
 end
