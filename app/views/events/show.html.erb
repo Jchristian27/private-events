@@ -2,12 +2,17 @@
 
 <p>Created By: <%= @event.creator.name %></p>
 <p>Date: <%= @event.date %></p>
-<p>Attendees:</p>
-<ul>
-  <% @event.attendees.uniq.each do |attendee| %>
-    <li><%= attendee.name %></li>
-  <% end %>
-</ul>
+<% if @event.attendees.count.zero?%>
+  <p>Attendees:</p>
+  <p>There are no attendees yet.</p>
+<% else %>
+  <p>Attendees:</p>
+  <ul>
+    <% @event.attendees.each do |attendee| %>
+      <li><%= attendee.name %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <% if user_signed_in? && current_user.id != @event.creator_id && !@event.attendee_ids.include?(current_user.id) %>
   <%= button_to "Attend This Event", attendances_create_path, method: :get, 
