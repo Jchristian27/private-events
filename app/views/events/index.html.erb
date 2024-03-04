@@ -1,6 +1,6 @@
 <h1>All Events</h1>
 
-<% @events.each do |event|%>
+<% @events.order(created_at: :desc).each do |event|%>
   <div class="event_card">
     <p> Event Name: <%= event.title %></p>
     <p> Event Date: <%= event.date %></p>

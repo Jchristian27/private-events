@@ -18,14 +18,9 @@
 <br>
 
 <h2>Upcoming Events</h2>
-<% @upcoming_user_events =  Event.find_by_sql(
-  "SELECT * FROM events 
-   INNER JOIN attendances on events.id = attendances.event_id 
-   INNER JOIN users ON attendances.attendee_id = users.id 
-   WHERE date > '#{Time.now}'")%>
+<% @upcoming_user_events =  Event.joins("INNER JOIN attendances ON events.id = attendances.event_id").joins("INNER JOIN users ON attendances.attendee_id = users.id").where("date > ?", Time.now)%>
 <ul>
   <% @upcoming_user_events.each do |event| %>
-    <%= event.title %>
     <li><%= link_to "#{event.title}", event_path(event) %></li>
   <% end %>
 </ul>
@@ -35,11 +30,8 @@
 <br>
 
 <h2>Events You've Attended</h2>
-<% @past_user_events =  Event.find_by_sql(
-  "SELECT * FROM events 
-   INNER JOIN attendances on events.id = attendances.event_id 
-   INNER JOIN users ON attendances.attendee_id = users.id 
-   WHERE date < '#{Time.now}'")%>
+<% @past_user_events =  Event.joins("INNER JOIN attendances ON events.id = attendances.event_id").joins("INNER JOIN users ON attendances.attendee_id = users.id").where("date < ?", Time.now)%>
+
 <ul>
   <% @past_user_events.each do |event| %>
     <li><%= link_to "#{event.title}", event_path(event) %></li>
