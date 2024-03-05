@@ -3,12 +3,11 @@
 <h2>Events You've Created</h2>
 
 <% if @user.created_events.count.positive?%>
+  <ul>
   <% @user.created_events.each do |event| %>
-    <div class="event_card">
-      <%= event.title %><br><br>
-      <%= event.date%>
-    </div>
+    <li><%= link_to "#{event.title}", event_path(event) %></li>
   <% end %>
+  </ul>
 <% else %>
   <p>You have not created any events yet.</p>
 <% end %>
@@ -18,9 +17,8 @@
 <br>
 
 <h2>Upcoming Events</h2>
-<% @upcoming_user_events =  Event.joins("INNER JOIN attendances ON events.id = attendances.event_id").joins("INNER JOIN users ON attendances.attendee_id = users.id").where("date > ?", Time.now)%>
 <ul>
-  <% @upcoming_user_events.each do |event| %>
+  <% Event.upcoming_attended_events_for_user(current_user.id).each do |event| %>
     <li><%= link_to "#{event.title}", event_path(event) %></li>
   <% end %>
 </ul>
@@ -30,10 +28,8 @@
 <br>
 
 <h2>Events You've Attended</h2>
-<% @past_user_events =  Event.joins("INNER JOIN attendances ON events.id = attendances.event_id").joins("INNER JOIN users ON attendances.attendee_id = users.id").where("date < ?", Time.now)%>
-
 <ul>
-  <% @past_user_events.each do |event| %>
+  <% Event.previously_attended_events_for_user(current_user.id).each do |event| %>
     <li><%= link_to "#{event.title}", event_path(event) %></li>
   <% end %>
 </ul>
