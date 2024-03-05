@@ -1,18 +1,13 @@
 class AttendancesController < ApplicationController
 
   def create
-    @attendance = Attendance.build(attendance_params)
-
-    if @attendance.save
-      redirect_to "http://localhost:3000/events/#{params[:event_id]}"
-    else
-      render "http://localhost:3000/events/#{params[:event_id]}"
-      flash.now[:danger] = "Uh oh. Something went wrong!"
-    end
+    @attendance = current_user.attendances.build(params)
+    @attendance.save
+    redirect_to event_path(@attendance.event_id)
   end
 
   private
   def attendance_params
-    params.permit(:event_id, :attendee_id)
+    params.permit(:event_id)
   end
 end
